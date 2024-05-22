@@ -15,7 +15,13 @@ const iconNames = [
   'cross',
   'circle',
   'triangle',
-  'up'
+  'up',
+  'down',
+  'left',
+  'right',
+  'options',
+  'bumper',
+  'trigger'
 ]
 
 await fs.mkdir(tmpDirPath, { recursive: true })
@@ -23,10 +29,13 @@ try {
   await $`${asepriteBinaryPath} --batch ${asepriteDirPath}/gamepad-icons-15.aseprite --save-as ${tmpDirPath}/gamepad.png`
   const exportedNames = await fs.readdir(tmpDirPath)
   expect(exportedNames).to.have.lengthOf(iconNames.length)
-  await Promise.all(exportedNames.map((exportedName, index) => fs.rename(
-    path.join(tmpDirPath, exportedName),
-    path.join(assetsDirPath, iconNames[index] + '.png')
-  )))
+  await Promise.all(exportedNames.map(exportedName => {
+    const index = Number.parseInt(exportedName.replaceAll('gamepad', ''), 10) - 1
+    return fs.rename(
+      path.join(tmpDirPath, exportedName),
+      path.join(assetsDirPath, iconNames[index] + '.png')
+    )
+  }))
 } finally {
   await fs.rm(tmpDirPath, { recursive: true, force: true })
 }
