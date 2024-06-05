@@ -1,4 +1,4 @@
-import { GamepadButton, gamepadButtons } from './GamepadButton'
+import { GamepadButton, gamepadButtons } from '../core'
 
 export class GamepadManager {
   private readonly buttonStates: Record<GamepadButton, boolean>

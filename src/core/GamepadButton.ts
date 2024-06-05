@@ -1,3 +1,8 @@
+/**
+ * const array of gamepad button names
+ *
+ * the order is the same as the order of buttons returned by {@link Gamepad#buttons}
+ */
 export const gamepadButtons = [
   'a',
   'b',
