@@ -69,6 +69,7 @@ export class SimpleGamepad {
         Math.floor(this.app.screen.height / 240),
       )
       container.scale = scale
+      container.position
       container.x = this.app.screen.width / 2 - width * scale / 2
       container.y = this.app.screen.height / 2 - height * scale / 2
     })
