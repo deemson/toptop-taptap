@@ -5,57 +5,51 @@ import {
   Texture
 } from 'pixi.js'
 
-export class GamepadColorButton {
+interface GamepadButtonOpts {
+  parent: Container<ContainerChild>
+  onPressTextures: Texture[]
+  onReleaseTextures: Texture[]
+  x: number
+  y: number
+  rotation: number
+}
+
+export class GamepadButton {
+  private readonly parent: Container<ContainerChild>
   private readonly onPressSprite: AnimatedSprite
   private readonly onReleaseSprite: AnimatedSprite
 
-  constructor (
-    private readonly parent: Container<ContainerChild>,
-    name: string,
-    x: number,
-    y: number
-  ) {
-    const textures: Texture[] = []
-    for (let i = 0; i < 5; i++) {
-      textures.push(Texture.from(`${name} ${i}.aseprite`))
-    }
+  constructor (opts: GamepadButtonOpts) {
+    this.parent = opts.parent
 
-    this.onPressSprite = new AnimatedSprite([
-      textures[2],
-      textures[1],
-      textures[0],
-      textures[1],
-    ])
+    this.onPressSprite = new AnimatedSprite(opts.onPressTextures)
     this.onPressSprite.animationSpeed = 0.5
     this.onPressSprite.loop = false
     this.onPressSprite.anchor = 0.5
-    this.onPressSprite.x = x
-    this.onPressSprite.y = y
+    this.onPressSprite.x = opts.x
+    this.onPressSprite.y = opts.y
+    this.onPressSprite.angle = opts.rotation
 
-    this.onReleaseSprite = new AnimatedSprite([
-      textures[1],
-      textures[2],
-      textures[3],
-      textures[4],
-    ])
+    this.onReleaseSprite = new AnimatedSprite(opts.onReleaseTextures)
     this.onReleaseSprite.animationSpeed = 0.5
     this.onReleaseSprite.loop = false
     this.onReleaseSprite.anchor = 0.5
-    this.onReleaseSprite.x = x
-    this.onReleaseSprite.y = y
+    this.onReleaseSprite.x = opts.x
+    this.onReleaseSprite.y = opts.y
+    this.onReleaseSprite.angle = opts.rotation
 
     this.onReleaseSprite.gotoAndStop(3)
 
     this.parent.addChild(this.onReleaseSprite)
   }
 
-  onPress () {
+  press () {
     this.parent.removeChild(this.onReleaseSprite)
     this.parent.addChild(this.onPressSprite)
     this.onPressSprite.gotoAndPlay(0)
   }
 
-  onRelease () {
+  release () {
     this.parent.removeChild(this.onPressSprite)
     this.parent.addChild(this.onReleaseSprite)
     this.onReleaseSprite.gotoAndPlay(0)

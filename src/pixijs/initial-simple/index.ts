@@ -1,4 +1,5 @@
 export * from './makeApp'
 export * from './makeTopBackgroundContainer'
-export * from './GamepadColorButton'
+export * from './GamepadButton'
 export * from './GamepadColorButtonCircle'
+export * from './GamepadLayout'
