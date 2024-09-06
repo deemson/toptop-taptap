@@ -35,33 +35,33 @@ import { GamepadManager } from './gamepad'
   })
   const popSound = new Howl({ src: 'assets/sounds/zapsplat_cartoon_pop_mouth_mid_pitch_001_86611.mp3' })
 
-  // const gamepadEmulator = new GamepadEmulator({
-  //   gamepadButtonsToKeyCodes: {
-  //     a: 'KeyK',
-  //     b: 'KeyL',
-  //     x: 'KeyJ',
-  //     y: 'KeyI',
-  //     leftBumper: '',
-  //     rightBumper: '',
-  //     leftTrigger: '',
-  //     rightTrigger: '',
-  //     back: '',
-  //     start: '',
-  //     leftStick: '',
-  //     rightStick: '',
-  //     dPadUp: 'KeyW',
-  //     dPadDown: 'KeyS',
-  //     dPadLeft: 'KeyA',
-  //     dPadRight: 'KeyD',
-  //   },
-  //   onButtonPress: (button: GamepadButton) => {
-  //     popSound.play()
-  //     gamepadLayout.pressButton(button)
-  //   },
-  //   onButtonRelease: (button: GamepadButton) => {
-  //     gamepadLayout.releaseButton(button)
-  //   }
-  // })
+  new GamepadEmulator({
+    gamepadButtonsToKeyCodes: {
+      a: 'KeyK',
+      b: 'KeyL',
+      x: 'KeyJ',
+      y: 'KeyI',
+      leftBumper: '',
+      rightBumper: '',
+      leftTrigger: '',
+      rightTrigger: '',
+      back: '',
+      start: '',
+      leftStick: '',
+      rightStick: '',
+      dPadUp: 'KeyW',
+      dPadDown: 'KeyS',
+      dPadLeft: 'KeyA',
+      dPadRight: 'KeyD',
+    },
+    onButtonPress: (button: GamepadButton) => {
+      popSound.play()
+      gamepadLayout.pressButton(button)
+    },
+    onButtonRelease: (button: GamepadButton) => {
+      gamepadLayout.releaseButton(button)
+    }
+  })
   const gamepadManager = new GamepadManager({
     onButtonPress (button: GamepadButton): void {
       popSound.play()
