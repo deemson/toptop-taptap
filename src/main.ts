@@ -17,7 +17,7 @@ import { GamepadManager } from './gamepad'
     'triangle',
     'dpad'
   ].map(name => {
-    return Assets.load(`/assets/images/simple/${name}.json`)
+    return Assets.load(`assets/images/simple/${name}.json`)
   }))
 
   const indexes = Array.from({ length: 10 }, (_, i) => i)

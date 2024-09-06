@@ -9,6 +9,6 @@ The game uses the first connected gamepad. Sticks are not supported,
 only buttons. You can also use WASD and IJKL keys on the keyboard if you
 don't have a gamepad, but it kind of defeats the purpose :).
 
-The game is aimed at a child of around 2 year of age as a
+The game is aimed at a child of around 2 years of age as a
 guide for connecting tactile and hearing senses with an occasional
 glance at the screen.
